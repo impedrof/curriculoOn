@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous" />
+        <title>Pedro Freitas</title>
+
+        <script>
+
+            function aparecerNivel(i, cor) {
+                // Mover o contéudo da tag p
+                document.getElementsByClassName('pezinho')[i].style.transition = '1s all';
+                document.getElementsByClassName('pezinho')[i].style.margin = '10px 0px 0px 0px';
+
+                // Trocar cor de fundo da tag H2
+                document.getElementsByTagName('h2')[i].style.background = cor;
+                document.getElementsByTagName('h2')[i].style.transition = '1s all';
+
+            }
+
+            function sumirNivel(i) {
+
+                // Voltar para posição inicial tag p
+                document.getElementsByClassName('pezinho')[i].style.margin = '-25px 0px 0px 0px';
+
+                // Voltar a cor de fundo padrão
+                document.getElementsByTagName('h2')[i].style.background = '#2f3640';
+            }
+
+
+            function setarCor(i) {
+                var sCor = document.getElementsByClassName('btn-comp');
+                if(i == 0) {
+                    sCor[0].style.background = '#353b48';
+                    sCor[0].style.color = 'white';
+                    sCor[1].style.background = '';
+                    sCor[1].style.color = '';
+                } else if (i == 1) {
+                    sCor[1].style.background = '#353b48';
+                    sCor[1].style.color = 'white';
+                    sCor[0].style.background = '';
+                    sCor[0].style.color = '';
+                }
+                
+            }
+
+            function requisitarPaginas(url) {
+
+                document.getElementById('cont-princ').innerHTML = '';
+
+                var loading = new XMLHttpRequest();
+				loading.open('GET', 'loading.html');
+
+				loading.onreadystatechange = function() {
+
+					if(loading.readyState > 0) {
+						document.getElementById('cont-princ').innerHTML = loading.responseText;
+					}
+				}
+
+                loading.send();
+
+                var xml = new XMLHttpRequest();
+
+                xml.open('GET', url);
+
+                xml.onreadystatechange = function() {
+                    if(xml.readyState == 4 && xml.status == 200) {
+                        document.getElementById('cont-princ').innerHTML = xml.responseText;
+                    }
+
+                    if(xml.readyState == 4 && xml.status == 404) {
+                        document.getElementById('cont-princ').innerHTML = 'Ops... Algo deu errado! :/';
+                    }
+                }
+
+                xml.send();
+
+            }
+
+        </script>
+
+    </head>
+
+    <body>
+
+        <header></header>
+
+        <section class="container">
+
+            <div class="box">
+
+                <div class="box-left">
+                    <div class="cont-box-left">
+                        <h3>Pedro Freitas</h3>
+                        <p>Cursando Gestão da Tecnologia da Informação</p>
+
+                        <ul>
+                            <li><i class="far fa-envelope"></i>pedro.freitas14@fatec.sp.gov.br</li>
+                            <li><i class="fas fa-phone-alt"></i>+55 11 97045-2127</li>
+                            <li><i class="fas fa-map-marker-alt"></i>Brasil - Itaquaquecetuba/São Paulo</li>
+                        </ul>
+
+                        <span class="border-btn">
+                            <a href="https://www.linkedin.com/in/pedrofreitas790/" type="button" class="btn linkedin"><i class="fab fa-linkedin-in"></i></a>
+                        </span>
+
+                        <span class="border-btn">
+                            <a href="https://github.com/impedrof" type="button" class="btn github"><i class="fab fa-github"></i></a>
+                        </span>
+                        
+                        
+
+                    </div>
+                </div>
+                <div class="box-right"></div>
+
+            </div>
+
+        </section>
+
+        <section class="container">
+            
+            <div class="box-all">
+
+                <div class="desc-cont">
+
+                    <p>Olá, meu nome é Pedro Freitas, tenho 19 anos e atualmente estou cursando o 3º semestre em Gestão da Tecnologia da Informação (GTI).
+                        Estudo tecnologias como: HTML, CSS, PHP, entre outras. Para mais informações, por favor, realize o download do meu currículo logo abaixo.
+                    </p>
+
+                    <div class="btn-down">
+                        <a href="pedro-henrique-rodrigues-de-freitas.docx" download class="btn"><i class="fas fa-download"></i></a>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <section class="container">
+
+            <div class="links-comp">
+                <button class="btn-comp" onclick="setarCor(0), requisitarPaginas('competencias.html')">Competências</button>
+                <button class="btn-comp" onclick="setarCor(1), requisitarPaginas('cursos.html')">Cursos</button>
+            </div>
+
+            <div class="princ" id="cont-princ"></div>
+
+        </section>
+        
+    </body>
+</html>
