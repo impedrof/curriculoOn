@@ -8,6 +8,7 @@
 
 a:active, a:link, a:visited {
     color: #353b48;
+    text-decoration: none;
 }
 body {
     background: #f5f6fa;
@@ -538,6 +539,14 @@ header {
     -webkit-transition: .5s;
     -o-transition: .5s;
     transition: .5s;
+}
+
+/* Footer */
+
+footer.container {
+    position: relative;
+    text-align: center;
+    top: 0px;
 }
 
 /* LOADING PERSONALIZADO */
